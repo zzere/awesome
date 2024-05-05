@@ -23,7 +23,7 @@ require("bar")
 -- importar para cargar lo comandos de tecla global
 require("keys")
 -- NOTA COLOCAR LA RUTA DEL LA IMAGEN /home/{usario}/.config/awesome/wallpaper/Ruka Sarashina.jpg"
-url_wallpaper = "/home/seb/.config/awesome/wallpapers/arch.png"
+url_wallpaper = "/home/quantum/.config/awesome/wallpapers/arch.png"
 -- {{{ Manejo de errores
 -- Compruebe si Awesome encontró un error durante el inicio y volvió a
 -- otra configuración (Este código solo se ejecutará para la configuración alternativa)
@@ -68,7 +68,7 @@ editor_cmd = terminal .. " -e " .. editor
 modkey = "Mod4"
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
-awful.layout.suit.floating, 
+--awful.layout.suit.floating, 
 awful.layout.suit.tile, 
 awful.layout.suit.tile.left,
 awful.layout.suit.tile.bottom,
@@ -128,9 +128,9 @@ end), awful.button({}, 5, function(t)
     awful.tag.viewprev(t.screen)
 end))
 -- Distancia entre laterales
-beautiful.useless_gap = 10
+beautiful.useless_gap = 5
 awful.screen.connect_for_each_screen(function(s)
-    s.padding = 10 -- entre la ventan aun siendo no siendo tile
+    s.padding = 5 -- entre la ventan aun siendo no siendo tile
 end)
 local tasklist_buttons = gears.table.join(awful.button({}, 1, function(c)
     if c == client.focus then
@@ -250,7 +250,7 @@ awful.rules.rules = { --- Todos los clientes coincidirán con esta regla.
         type = {"normal", "dialog"}
     },
     properties = {
-        titlebars_enabled = true -- oculatar la barra de las ventanas
+        titlebars_enabled = false -- oculatar la barra de las ventanas
     }
 } -- Set Firefox to always map on the tag named "2" on screen 1.
 -- { rule = { class = "Firefox" },
@@ -325,7 +325,7 @@ client.connect_signal("focus", function(c)
 end)
 -- cuando la ventan no esta seleccionada
 client.connect_signal("unfocus", function(c)
-    c.opacity = "0.7"
+    c.opacity = "0.8"
     c.border_color = beautiful.border_normal
 end)
 -- }}}
@@ -334,3 +334,6 @@ awful.util.spawn("picom")--tranparencia
 awful.spawn.with_shell("/usr/lib/polkit-kde-authentication-agent-1 &")--lanzador de ventana para permisos
 --color del listado aplicaciones de segundo plano
 beautiful.bg_systray = "000000"
+-- programas de inicio
+awful.util.spawn("xrandr --output HDMI-0 --left-of DVI-I-1")
+--awful.util.spawn("xrandr --output HDMI-0 --primary")
